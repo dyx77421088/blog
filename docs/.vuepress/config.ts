@@ -5,8 +5,11 @@ import { plumeTheme } from 'vuepress-theme-plume'
 export default defineUserConfig({
   base: '/',
   lang: 'zh-CN',
-  title: 'My Vuepress Site',
+  title: 'DYX666',
   description: '',
+  head: [
+    ['link', {rel: 'icon', type: 'image/png', sizes: '32x32', href: '/plume.svg'}],
+  ],
 
   bundler: viteBundler(),
 
@@ -19,10 +22,13 @@ export default defineUserConfig({
        * Shiki 代码高亮
        * @see https://theme-plume.vuejs.press/config/plugins/code-highlight/
        */
-      // shiki: {
-           // 强烈建议预设代码块高亮语言，插件默认加载所有语言会产生不必要的时间开销
-      //   languages: ['shell', 'bash', 'typescript', 'javascript'],
-      // },
+      shiki: {
+        // 强烈建议预设代码块高亮语言，插件默认加载所有语言会产生不必要的时间开销
+        languages: [
+          'shell', 'bash', 'typescript', 'javascript',
+          'c#',
+        ],
+      },
 
       /**
        * markdown enhance
