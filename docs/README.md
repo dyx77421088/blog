@@ -10,7 +10,7 @@ config:
       dark: 0.3
     hero:
       name: dyx的博客
-      tagline: Evil rich second generation
+      tagline: Dyx's blog
       text: dyx666
       actions:
         -
