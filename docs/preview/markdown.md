@@ -66,7 +66,7 @@ H~2~O
 
 [链接](/)
 
-[外部链接](https://github.com/pengzhanbo)
+[外部链接](https://github.com/dyx77421088)
 
 **Badge：**
 
@@ -189,7 +189,8 @@ const c = a + b
 ```
 
 :::
-
+::: tip 我是提示的消息！！！
+:::
 ::: tip 提示
 提示内容 [link](https://github.com/pengzhanbo) `inline code`
 
@@ -281,10 +282,10 @@ span {
 
 ::: tabs
 @tab 标题1
-内容区块
+内容区块1
 
 @tab 标题2
-内容区块
+内容区块2
 :::
 
 :::: warning
