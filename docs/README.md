@@ -9,7 +9,7 @@ config:
       light: 0.1
       dark: 0.3
     hero:
-      name: 万恶的富二代
+      name: dyx的博客
       tagline: Evil rich second generation
       text: dyx666
       actions:
