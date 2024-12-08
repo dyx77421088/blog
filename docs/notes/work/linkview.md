@@ -2,7 +2,7 @@
 title: Link使用
 tags:
   - markdown
-permalink: /article/link/
+permalink: /work/link/
 createTime: 2024/12/07 14:27:41
 ---
 

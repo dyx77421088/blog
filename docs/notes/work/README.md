@@ -1,7 +1,7 @@
 ---
 title: link
 createTime: 2024/12/07 13:57:30
-permalink: /link/
+permalink: /work/
 ---
 ::: tip link相关的
 :::
