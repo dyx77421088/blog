@@ -4,7 +4,7 @@ externalLinkIcon: false
 config:
   -
     type: banner
-    banner: https://oss.miyou.site/picture/dyx666bg.jpg
+    banner: https://oss.dyx666.icu/image/bg.jpg
     bannerMask:
       light: 0.1
       dark: 0.3
