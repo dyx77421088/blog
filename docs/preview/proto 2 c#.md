@@ -3,7 +3,8 @@ title: proto快速转换成c#
 createTime: 2024/11/27 22:59:35
 permalink: /article/8khle4h4/
 tags:
-  - proto
+  - Proto
+  - C#
 ---
 [项目链接](https://github.com/dyx77421088/LockStepServer)
 ## proto快速转换成c#

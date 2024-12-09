@@ -7,9 +7,14 @@ const linkNote = defineNoteConfig({
   link: '/work/',
   sidebar: 'auto',
 })
+const psNote = defineNoteConfig({
+  dir: 'ps',
+  link: '/ps/',
+  sidebar: 'auto',
+})
 
 export const notes = defineNotesConfig({
   dir: 'notes',
   link: '/',
-  notes: [linkNote],
+  notes: [linkNote, psNote],
 })

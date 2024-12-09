@@ -9,6 +9,7 @@ export const navbar = defineNavbarConfig([
         text: '笔记',
         items: [
             {text: '工作的一些笔记', link: '/work/', icon: 'flat-color-icons:command-line'},
+            {text: 'ps的一些使用', link: '/ps/', icon: 'flat-color-icons:camera'},
         ]
     },
 ])
