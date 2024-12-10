@@ -12,9 +12,14 @@ const psNote = defineNoteConfig({
   link: '/ps/',
   sidebar: 'auto',
 })
+const lockStep = defineNoteConfig({
+  dir: 'lockStep',
+  link: '/lockStep/',
+  sidebar: 'auto',
+})
 
 export const notes = defineNotesConfig({
   dir: 'notes',
   link: '/',
-  notes: [linkNote, psNote],
+  notes: [linkNote, psNote, lockStep],
 })

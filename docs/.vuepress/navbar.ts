@@ -10,6 +10,7 @@ export const navbar = defineNavbarConfig([
         items: [
             {text: '工作的一些笔记', link: '/work/', icon: 'flat-color-icons:command-line'},
             {text: 'ps的一些使用', link: '/ps/', icon: 'flat-color-icons:camera'},
+            {text: '帧同步', link: '/lockStep/', icon: 'flat-color-icons:line-chart'},
         ]
     },
 ])
