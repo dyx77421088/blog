@@ -23,7 +23,7 @@ Ease.OutBounce 通常用于在物体移动或缩放等动画结束时，产生�
 ```c#
 targetObj.DOLocalMove(targetPos.localPosition, 0.7f).SetEase(Ease.OutBounce);
 ```
-<img src="https://oss.dyx666.icu/image/down3.gif" width=150 />
+<img src="https://oss.dyx666.icu/gif/down3.gif" width=150 />
 
 
 
@@ -48,7 +48,7 @@ public static Tweener DOLocalJump(Transform target, Vector3 jumpEndValue, float 
 ```c#
 targetObj.DOLocalJump(targetPos.localPosition, 0.5f, 2, 0.7f).SetEase(Ease.OutBounce);
 ```
-<img src="https://oss.dyx666.icu/image/down2.gif" width=150 />
+<img src="https://oss.dyx666.icu/gif/down2.gif" width=150 />
 
 
 [更多曲线及使用效果](https://easings.net/zh-cn#)

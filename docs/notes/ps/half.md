@@ -16,6 +16,6 @@ permalink: /ps/j69i0txb/
 
   #### 完整操作
 <video controls>
-    <source src = "https://oss.dyx666.icu/image/ps裁剪.mp4" type = "video/mp4">
+    <source src = "https://oss.dyx666.icu/video/ps裁剪.mp4" type = "video/mp4">
     不能播放
 </video>
