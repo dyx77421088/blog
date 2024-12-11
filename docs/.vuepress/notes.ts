@@ -15,7 +15,8 @@ const psNote = defineNoteConfig({
 const lockStep = defineNoteConfig({
   dir: 'lockStep',
   link: '/lockStep/',
-  sidebar: 'auto',
+  // 这里是需要顺序显示
+  sidebar: ['create.md', 'udp-start.md', 'udp-chat'],
 })
 
 export const notes = defineNotesConfig({
