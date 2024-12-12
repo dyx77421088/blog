@@ -6,6 +6,12 @@ createTime: 2024/12/07 13:57:30
 permalink: /article/5fg0ibzv/
 draft: true
 ---
+<LinkCard title="卡片标题" href="/" description="这里是卡片内容" />
+
+<CardGrid>
+  <RepoCard repo="vuepress/core" />
+  <RepoCard repo="vuepress/ecosystem" />
+</CardGrid>
 
 ## 标题 2
 

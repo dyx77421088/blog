@@ -14,7 +14,8 @@ permalink: /article/nul2i8ot/
 
 <span class="left2" /> 在前面的 [文章](./observer.md) 我们已经知道了如何简单地使用观察者设计模式，同时也留下了一些问题：带参数的事件、如何优化写法。细心的同学就会发现我们前面写的==Event.cs==用的是 [partial](./partial.md) 关键字，我们可以在==Event.cs==中处理多个数据。  
 
-Event.T.cs
+::: code-tabs
+@tab Event.T.cs
 ``` c#
 public partial class Event<T> : IEvent
 {
@@ -59,7 +60,7 @@ public partial class Event<T> : IEvent
 }
 ```
 
-Events.Input.cs
+@tab Events.Input.cs
 ``` c#
 public partial class Events
 {
@@ -69,13 +70,13 @@ public partial class Events
     public static Event JumpRequest = new Event("JumpRequest"); // 跳跃的请求
 }
 ```
-DesktopInput.cs
+@tab DesktopInput.cs
 ``` c#
 // 武器的下标从0开始
 Events.PlayerSwapWeapon.Call(0);
 ```
 
-PlayerBehaviour.Attack.cs
+@tab PlayerBehaviour.Attack.cs
 ``` c#
 // 换武器
 private void OnSwapWeapon(int index)
@@ -84,7 +85,7 @@ private void OnSwapWeapon(int index)
 }
 ```
 
-PlayerBehaviour.cs
+@tab PlayerBehaviour.cs
 ``` c#
 // 在这里面注册订阅
 private void SubScribe()
@@ -98,14 +99,15 @@ private void UnSubScribe()
     // 省略其它的订阅....
 }
 ```
-
+:::
 
 <span class="left2" /> 在==Event.T.cs==中只需要增加一个泛型就可以用来传参了，如果有两个或更多的参数也是同理，==Event.TT.cs== 、 ==Event.TTT.cs==。
 
 ---
 <span class="left2" />使用反射给Events中的静态参数实例化。我们可以用反射给 public static 修饰的 Event 全部自动实例化，所以在==Events.Input.cs==就不需要再实例化了。不知道反射也没关系，只需要知道加了==Events.cs==中的代码之后，后面的事件就不需要实例化就可以直接使用了。  
 
-Events.Input.cs
+::: code-tabs
+@tab Events.Input.cs
 ``` c#
 public partial class Events
 {
@@ -116,7 +118,7 @@ public partial class Events
 }
 ```
 
-Events.cs
+@tab Events.cs
 ``` c#
 public partial class Events
 {
@@ -139,5 +141,6 @@ public partial class Events
     }
 }
 ```
+:::
 
 

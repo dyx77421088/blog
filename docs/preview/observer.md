@@ -17,7 +17,8 @@ permalink: /article/k4dw3hzh/
 
 ## 二、具体实现
 
-IEvent.cs
+::: code-tabs
+@tab IEvent.cs
 ``` c#
 public abstract class IEvent
 {
@@ -35,7 +36,7 @@ public abstract class IEvent
 }
 ```
 
-Event.cs
+@tab Event.cs
 ``` c#
 public partial class Event : IEvent
 {
@@ -80,7 +81,7 @@ public partial class Event : IEvent
     }
 }
 ```
-Events.Input.cs
+@tab Events.Input.cs
 ``` c#
 /// <summary>
 /// 从键盘输入出发的事件
@@ -92,9 +93,12 @@ public partial class Events
     public static Event JumpRequest = new Event("JumpRequest"); // 跳跃的请求
 }
 ```
-<span class="left2" />在上面几个cs文件就把观察者设计模式简单的定义好了，在==Event.cs==中用subscribers集合来存放该事件中所有需要执行的操作，在调用Call()方法就会把所有的订阅依次执行一次。在==Events.Input.cs==中定义了三个事件，那么要怎么实现呢。
 
-DesktopInput.cs
+:::
+<span class="left2" />在上面几个cs文件就把观察者设计模式简单的定义好了，在==Event.cs==中用`subscribers`集合来存放该事件中所有需要执行的操作，在调用`Call()`方法就会把所有的订阅依次执行一次。在==Events.Input.cs==中定义了三个事件，那么要怎么实现呢。
+
+::: code-tabs
+@tab DesktopInput.cs
 ``` c#
 public class DesktopInput : MonoBehaviour
 {
@@ -124,7 +128,7 @@ public class DesktopInput : MonoBehaviour
 }
 ```
 
-PlayerBehaviour.cs
+@tab PlayerBehaviour.cs
 
 ``` c#
 public partial class PlayerBehaviour : MonoBehaviour
@@ -166,7 +170,7 @@ public partial class PlayerBehaviour : MonoBehaviour
     }
 }
 ```
-PlayerBehaviour.Movement.cs
+@tab PlayerBehaviour.Movement.cs
 
 ``` c#
 public partial class PlayerBehaviour : MonoBehaviour
@@ -182,7 +186,7 @@ public partial class PlayerBehaviour : MonoBehaviour
 }
 ```
 
-PlayerBehaviour.Attack.cs
+@tab PlayerBehaviour.Attack.cs
 
 ``` c#
 public partial class PlayerBehaviour : MonoBehaviour
@@ -199,7 +203,7 @@ public partial class PlayerBehaviour : MonoBehaviour
     }
 }
 ```
-PlayerBulletUI.cs
+@tab PlayerBulletUI.cs
 ``` c#
 public class PlayerBulletUI  : MonoBehaviour
 {
@@ -235,8 +239,8 @@ public class PlayerBulletUI  : MonoBehaviour
     }
 }
 ```
-
-<span class="left2" />在==DesktopInput.cs==中获得从玩家的操作，再通过这个点来执行所有的订阅。如：角色按左键进行发射子弹，在==PlayerBehaviour.Attack.cs==中会执行OnFireRequest()方法，在==PlayerBulletUI.cs==中执行UpdateBullet()方法修改子弹数UI。
+:::
+<span class="left2" />在==DesktopInput.cs==中获得从玩家的操作，再通过这个点来执行所有的订阅。如：角色按左键进行发射子弹，在==PlayerBehaviour.Attack.cs==中会执行`OnFireRequest()`方法，在==PlayerBulletUI.cs==中执行`UpdateBullet()`方法修改子弹数UI。
 <style>
   .left2 {
     margin-left: 30px;
@@ -244,4 +248,5 @@ public class PlayerBulletUI  : MonoBehaviour
 </style>
 
 ## 三、思考
-<span class="left2" />在==Events.Input.cs==中我们定义的三个事件都是不能传参数的，但我们难免会用到入参，那么要怎么实现呢？在定义事件的时候每次都要new一个Event，可以如何优化？进阶版：[观察者设计模式2](./observer2.md)
+<span class="left2" />在==Events.Input.cs==中我们定义的三个事件都是不能传参数的，但我们难免会用到入参，那么要怎么实现呢？在定义事件的时候每次都要new一个`Event`，可以如何优化？
+<LinkCard title="进阶版" href="./observer2.md" description="观察者设计模式2" />

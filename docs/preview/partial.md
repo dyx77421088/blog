@@ -14,7 +14,8 @@ permalink: /article/afepa8es/
 :::
 
 假如你有一个Car.cs类，可以将其功能分成多个部分：  
-Car.Part1.cs
+::: code-tabs
+@tab Car.Part1.cs
 ``` c#
 public partial class Car
 {
@@ -22,7 +23,7 @@ public partial class Car
     public string Model { get; set; }
 }
 ```
-Car.Part2.cs 
+@tab Car.Part2.cs 
 ``` c#
 public partial class Car
 {
@@ -39,7 +40,7 @@ public partial class Car
 
 ```
 
-使用示例
+@tab 使用示例
 ``` c#
 public class Program
 {
@@ -57,13 +58,15 @@ public class Program
     }
 }
 ```
+:::
 <span class="left2" />在这个示例中，Car类被拆分成了两部分，一个包含属性，一个包含方法。注意：在给类取名字的时候两个类的名字必须相同，然后用.xxx区分为不同的文件，比如上面就用的是Car.Part1.cs 和 Car.Part2.cs 其中Car表示都是Car.cs，用.Part1和.Part2区分为两个不同的文件。
 
 
 ## 二、Unity应用场景
 <span class="left2" /> 假如你要写一个PlayerBehaviour.cs用来实现玩家的操作。那么可以使用Partial关键字来把功能分离到多个文件中。  
 
-PlayerBehaviour.cs
+::: code-tabs
+@tab PlayerBehaviour.cs
 
 ``` c#
 public partial class PlayerBehaviour : MonoBehaviour
@@ -84,7 +87,7 @@ public partial class PlayerBehaviour : MonoBehaviour
     }
 }
 ```
-PlayerBehaviour.Movement.cs
+@tab PlayerBehaviour.Movement.cs
 
 ``` c#
 public partial class PlayerBehaviour : MonoBehaviour
@@ -96,7 +99,7 @@ public partial class PlayerBehaviour : MonoBehaviour
 }
 ```
 
-PlayerBehaviour.Attack.cs
+@tab PlayerBehaviour.Attack.cs
 
 ``` c#
 public partial class PlayerBehaviour : MonoBehaviour
@@ -108,7 +111,7 @@ public partial class PlayerBehaviour : MonoBehaviour
     }
 }
 ```
-
+:::
 <style>
   .left2 {
     margin-left: 30px;
