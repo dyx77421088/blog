@@ -64,7 +64,7 @@ private static void HandleBroadcastMessage(byte[] msg, IPEndPoint client)// [!co
     {// [!code ++]
         clients.Add(client);// [!code ++]
     }// [!code ++]
-    // 把这个消息广播给所有的客户端（出去发送者）// [!code ++]
+    // 把这个消息广播给所有的客户端（除去发送者）// [!code ++]
     foreach (IPEndPoint endpoint in clients)// [!code ++]
     {// [!code ++]
         if (!endpoint.Equals(client))// [!code ++]
