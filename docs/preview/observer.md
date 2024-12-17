@@ -5,7 +5,11 @@ tags:
 createTime: 2024/12/12 10:34:22
 permalink: /article/k4dw3hzh/
 ---
-
+<style>
+  .left2 {
+    margin-left: 30px;
+  }
+</style>
 
 ## 一、设计模式
 ::: tip 观察者设计模式
@@ -241,11 +245,7 @@ public class PlayerBulletUI  : MonoBehaviour
 ```
 :::
 <span class="left2" />在==DesktopInput.cs==中获得从玩家的操作，再通过这个点来执行所有的订阅。如：角色按左键进行发射子弹，在==PlayerBehaviour.Attack.cs==中会执行`OnFireRequest()`方法，在==PlayerBulletUI.cs==中执行`UpdateBullet()`方法修改子弹数UI。
-<style>
-  .left2 {
-    margin-left: 30px;
-  }
-</style>
+
 
 ## 三、思考
 <span class="left2" />在==Events.Input.cs==中我们定义的三个事件都是不能传参数的，但我们难免会用到入参，那么要怎么实现呢？在定义事件的时候每次都要new一个`Event`，可以如何优化？
