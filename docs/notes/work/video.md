@@ -179,12 +179,12 @@ self.video:Play() -- [!code highlight]
 
 ``` lua
 self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
-          :AddFrameLinsterByUrl("Video/Book", 0.5, function ()
-			MyLog("第0.5秒触发的监听")
-		  end, true)
-		  :AddFrameLinsterByUrl("Video/Book", 25, function ()
-			MyLog("第25帧触发的监听")
-		  end, false)
+          :AddFrameLinsterByUrl("Video/Book", 0.5, function ()-- [!code highlight]
+			MyLog("第0.5秒触发的监听")-- [!code highlight]
+		  end, true)-- [!code highlight]
+		  :AddFrameLinsterByUrl("Video/Book", 25, function ()-- [!code highlight]
+			MyLog("第25帧触发的监听")-- [!code highlight]
+		  end, false)-- [!code highlight]
 ```
 
 ### 6、DOAlpha(alpha, time)
@@ -210,11 +210,11 @@ self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
 ``` lua
 self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
           :AddFrameLinsterByUrl("Video/Book", 1, function ()
-			self.video:DOAlpha(0, 1) -- [!code highlight]
-		  end, true)
-		  :AddFrameLinsterByUrl("Video/Book", 3, function ()
-			self.video:DOAlpha(1, 1) -- [!code highlight]
-		  end, true)
+            self.video:DOAlpha(0, 1) -- [!code highlight]
+          end, true)
+          :AddFrameLinsterByUrl("Video/Book", 3, function ()
+            self.video:DOAlpha(1, 1) -- [!code highlight]
+          end, true)
 ```
 
 ### 7、SetMaterial(materialType, param)
@@ -223,7 +223,7 @@ self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
 | 参数名      | 类型       | 默认值  | 描述            |
 | -------- | -------- | ---- | -------------------------------- |
 | materialType      | enum |      | 可以选的类型为`Const.VideoMaterialType.Color`、`Const.VideoMaterialType.Image` |
-| param    | table   |  | 传入的参数，image类型：\{maskTex:Image\}，Color类型：\{removeColor:Color\} |
+| param    | table   |  | 传入的参数，image类型：\{maskTex:Texture\}，Color类型：\{removeColor:Color\} |
 
 ---
 
@@ -237,3 +237,33 @@ self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
 
 > 使用
 
+``` lua
+-- video
+self.rawImage = self:GetChild("video", ClassType.RawImage)
+-- 创建video，显示的位置为self.rawImage
+self.video = VideoItem.New(self.transform, self.mBaseView, self.rawImage) 
+
+-- self.video:PlayVideo("Video/Book", true) -- 普通的播放视频
+
+self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
+          :SetMaterial(Const.VideoMaterialType.Color, {removeColor = Color.black}) -- 剔除黑色部分-- [!code highlight]
+```
+**左边是正常的视频播放，右边的是把黑色剔除了之后的视频。**
+
+<img src="https://oss.dyx666.icu/gif/videoMgr/colorRemove.gif" style="width:200px" alt="图片2"/>
+
+``` lua
+-- video
+self.rawImage = self:GetChild("video", ClassType.RawImage)
+-- 创建video，显示的位置为self.rawImage
+self.video = VideoItem.New(self.transform, self.mBaseView, self.rawImage) 
+
+self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
+
+Globals.resMgr:LoadSprite("Slot/Main/SlotAtlas", "imageRemove/queko", function (sp)-- [!code highlight]
+  self.video:SetMaterial(Const.VideoMaterialType.Image, {maskTex = sp.texture}) -- [!code highlight]
+end)-- [!code highlight]
+```
+**右边是进行剔除的图片，左边是根据图片剔除之后的效果视频。ps：剔除的部分为图片中透明的部分。**
+
+<img src="https://oss.dyx666.icu/gif/videoMgr/imageRemove.gif" style="width:200px" alt="图片2"/>

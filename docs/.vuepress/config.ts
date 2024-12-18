@@ -16,7 +16,6 @@ export default defineUserConfig({
   theme: plumeTheme({
     // 添加您的部署域名
     hostname: 'https://dyx666.icu',
-
     plugins: {
       /**
        * Shiki 代码高亮
@@ -70,7 +69,7 @@ export default defineUserConfig({
        * @see https://theme-plume.vuejs.press/guide/features/comments/
        */
       // comment: {
-      //   provider: '', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
+      //   provider: 'Artalk', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
       //   comment: true,
       //   repo: '',
       //   repoId: '',
@@ -79,6 +78,36 @@ export default defineUserConfig({
       //   reactionsEnabled: true,
       //   inputPosition: 'top',
       // },
+      
+      
+    },
+
+    // 公告板
+    // bulletin: {
+    //   layout: 'top-right',
+    //   title: '公告板标题',
+    //   content: '公告板内容',
+    // },
+    // 全局加密
+    // encrypt: {
+    //   global: true,
+    //   admin: ['123456'],
+    // },
+    encrypt: {
+      rules: {
+        // // 可以是 md 文件的相对路径，对该文件加密
+        // '前端/基础.md': '123456',
+        // // 可以是 文件夹的路径，对该目录下所有文章加密
+        // '/notes/vuepress-theme-plume/': '123456',
+        // // 可以是 访问地址的请求路径，对该访问路径下所有文章加密
+        // '/vuepress-theme-plume/': '123456',
+        // // 可以是 具体的某个页面的请求路径，对该页面加密
+        // '/article/f8dnci3/': '123456',
+        // // 如果是 `^` 开头，则匹配该正则表达式的页面也会加密
+        // '^/(a|b)/': '123456',
+
+        'notes/work/password.md': 'dyx666',
+      }
     },
   }),
 })
