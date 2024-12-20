@@ -139,7 +139,6 @@ public partial class UdpClient : MonoBehaviour
 ``` c#
 public partial class UdpClient
 {
-    private const int port = 12345;
     // 谁在发送，发送请求的udp
     private System.Net.Sockets.UdpClient udpClient = new System.Net.Sockets.UdpClient();
     // 发送给谁， 
