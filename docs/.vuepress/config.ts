@@ -68,16 +68,31 @@ export default defineUserConfig({
        * 评论 comments
        * @see https://theme-plume.vuejs.press/guide/features/comments/
        */
-      // comment: {
-      //   provider: 'Artalk', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
-      //   comment: true,
-      //   repo: '',
-      //   repoId: '',
-      //   categoryId: '',
-      //   mapping: 'pathname',
-      //   reactionsEnabled: true,
-      //   inputPosition: 'top',
-      // },
+      comment: {
+        provider: 'Giscus', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
+        comment: true,
+        repo: 'dyx77421088/dyx77421088.github.io',
+        repoId: 'R_kgDONfMeKA',
+        category: "Ideas",
+        categoryId: 'DIC_kwDONfMeKM4ClaQj',
+        mapping: 'pathname',
+        reactionsEnabled: true,
+        inputPosition: 'bottom',
+
+
+        // data-repo: "dyx77421088/dyx77421088.github.io",
+        // data-repo-id: "R_kgDONfMeKA",
+        // data-category: "Ideas",
+        // data-category-id: "DIC_kwDONfMeKM4ClaQj",
+        // data-mapping: "pathname",
+        // data-strict: "0",
+        // data-reactions-enabled: "1",
+        // data-emit-metadata: "0",
+        // data-input-position: "bottom",
+        // data-theme: "preferred_color_scheme",
+        // data-lang: "zh-CN",
+        // crossorigin: "anonymous",
+      },
       
       
     },
