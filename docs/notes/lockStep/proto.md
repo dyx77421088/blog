@@ -113,4 +113,40 @@ static void Main(string[] args)
 ![image](https://oss.dyx666.icu/image/server/proto/lookNuget.png)
 
 ## 四、使用protobuf
-然后在`Commit`项目中右击重新生成，这时候就可以在`LockStepServer`项目中使用user了，在unity中则需要重新导入==Commit.dll==文件。
+然后在`Commit`项目中右击重新生成，因为在`Commit`中用到了Protobuf，所以在`LockStepServer`中也需要[导入Protobuf](#三、导入protobuf)，这时候就可以在`LockStepServer`项目中使用user了。在unity中则需要重新导入==Commit.dll==文件，因为在Commit中用到了Protobuf(proto转C#)，所以在`Plugins`中也需要导入protobuf相关的dll（除去commit.dll其它的所有dll）。
+
+![image](https://oss.dyx666.icu/image/server/proto/unityDll.png)
+
+我们发送是把数据转换成byte[]，而收到消息也是收到的是byte[]，然后再转换成我们所收悉的数据类型。而在protobuf中可以把类转换成byte[]，同样的也可以把byte[]转换成对应的类。而通过protoc把proto转换成的c#中里面就有方法做到相互转换。
+
+::: code-tabs
+@tab 客户端/UdpClient.Request.cs
+``` c#
+private void Login(string userName, string password)
+{
+    User user = new User()
+    {
+        Name = userName,
+        Password = password
+    };
+    byte[] msg = user.ToByteArray(); //  实体类 => byte数组
+    udpClient.Send(msg, msg.Length, serverEndPoint);
+}
+```
+:::
+
+::: code-tabs
+@tab 服务端/UdpServer.cs
+``` c#
+private static void HandleLoginMessage(byte[] loginInfo, IPEndPoint client)
+{
+    //string[] strs = Encoding.UTF8.GetString(loginInfo).Split(' ');
+    User user = User.Parser.ParseFrom(loginInfo); // byte数组 => 实体类
+    string message = CheckLogin(user.Name, user.Password) ? "登陆成功" : "用户名或密码错误";
+    byte[] msg = Encoding.UTF8.GetBytes(message);
+    udpServer.Send(msg, msg.Length, client);
+}
+```
+:::
+
+当然，从server响应客户端也可以封装protobuf。
