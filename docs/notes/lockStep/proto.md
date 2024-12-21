@@ -18,7 +18,8 @@ permalink: /lockStep/protoBuf/
 
 ## 二、proto转c#
 在`Commit`项目中创建 ==Proto/User.proto==，proto相关的语法请自行学习。
-
+::: code-tabs
+@tab User.proto
 ``` protobuf
 syntax = "proto3";
 
@@ -28,7 +29,10 @@ message User {
     string password = 3;
 }
 ```
+:::
 在`LockStepServer`项目中的==Program.cs==使用程序快速proto转c#，`protoDirectory`、`outputDirectory`分别为proto所在的文件夹和输出的c#所在的文件夹。
+::: code-tabs
+@tab Program.cs
 ``` c#
 // .proto转换为csharp
 static void Protobuf2Cs()
@@ -86,6 +90,7 @@ static void ConvertProtoToCs(string protoFile, string outputDirectory)
     }
 }
 ```
+:::
 如果想要运行的话只需要把`UdpServer.Start();`注释掉，调用`Protobuf2Cs`方法就可以了。
 ``` c#
 static void Main(string[] args)

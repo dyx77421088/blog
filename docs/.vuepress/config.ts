@@ -71,10 +71,10 @@ export default defineUserConfig({
       comment: {
         provider: 'Giscus', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
         comment: true,
-        repo: 'dyx77421088/dyx77421088.github.io',
-        repoId: 'R_kgDONfMeKA',
+        repo: 'dyx77421088/blog',
+        repoId: 'R_kgDONVlJ4g',
         category: "Ideas",
-        categoryId: 'DIC_kwDONfMeKM4ClaQj',
+        categoryId: 'DIC_kwDONVlJ4s4ClaPh',
         mapping: 'pathname',
         reactionsEnabled: true,
         inputPosition: 'bottom',
