@@ -16,6 +16,8 @@ export default defineUserConfig({
   theme: plumeTheme({
     // 添加您的部署域名
     hostname: 'https://dyx666.icu',
+    // 最后部署时间
+    lastUpdated: false, 
     plugins: {
       /**
        * Shiki 代码高亮
