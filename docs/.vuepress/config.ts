@@ -79,7 +79,7 @@ export default defineUserConfig({
         categoryId: 'DIC_kwDONVlJ4s4ClaPh',
         mapping: 'pathname',
         reactionsEnabled: true,
-        inputPosition: 'bottom',
+        inputPosition: 'top',
 
 
         // data-repo: "dyx77421088/dyx77421088.github.io",
