@@ -1,7 +1,7 @@
 ---
 title: 1.创建项目及上传GitHub
 createTime: 2024/12/10 15:35:37
-permalink: /lockStep/ljgp4spj/
+permalink: /lockStep/create/
 ---
 <style>
   .my-h {

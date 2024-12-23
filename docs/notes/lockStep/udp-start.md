@@ -1,7 +1,7 @@
 ---
 title: 2.开始UDP通信
 createTime: 2024/12/11 13:58:52
-permalink: /lockStep/xhvkplni/
+permalink: /lockStep/start/
 ---
 
 <style>

@@ -1,7 +1,7 @@
 ---
 title: 3.服务端广播，简易的多人聊天
 createTime: 2024/12/11 14:49:35
-permalink: /lockStep/8gtf4irn/
+permalink: /lockStep/chat/
 ---
 
 <style>

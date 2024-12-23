@@ -1,7 +1,7 @@
 ---
 title: 5.创建公用的类库
 createTime: 2024/12/10 17:25:33
-permalink: /lockStep/hyen1oy6/
+permalink: /lockStep/commit/
 ---
 
 ## 一、创建类库
