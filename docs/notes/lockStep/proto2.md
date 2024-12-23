@@ -227,7 +227,7 @@ public void LoginResponse(BaseRequest request)
 :::
 
 ## 四、完整结构和代码
-<div style="display: flex;width: 340px;" class="left2">
+<div style="display: flex;width: 240px;" class="left2">
   <img src="https://oss.dyx666.icu/image/server/jiegou/Commit1.png" alt="图片1" style="margin-right: 10px;"/>
   <img src="https://oss.dyx666.icu/image/server/jiegou/LockStepServer1.png" alt="图片2" style="margin-right: 10px;"/>
   <img src="https://oss.dyx666.icu/image/server/jiegou/unity1.png" alt="图片2" style="margin-right: 10px;"/>
@@ -712,7 +712,65 @@ public partial class UdpClient
 }
 
 ```
+@tab LoginServer.cs
+``` c#
+using LockStep;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
+public class LoginServer : MonoBehaviour
+{
+    public InputField userName;
+    public InputField password;
+    public Text message;
+
+    private void Awake()
+    {
+        SubScribe();
+    }
+
+    private void SubScribe()
+    {
+        Events.LoginResponse += LoginResponse; // 登陆请求
+        Events.LoginSuccess += OnLoginSuccess; // 登陆成功
+    }
+    private void UnSubScribe()
+    {
+        Events.LoginResponse -= LoginResponse;
+        Events.LoginSuccess -= OnLoginSuccess;
+    }
+
+    /// <summary>
+    /// 获得登陆消息的响应信息
+    /// </summary>
+    /// <param name="baseRequest">响应信息</param>
+    public void LoginResponse(BaseRequest request)
+    {
+        message.text = request.Status.Msg;
+    }
+
+    /// <summary>
+    /// 用户登录成功！
+    /// </summary>
+    public void OnLoginSuccess(int userId)
+    {
+        //SceneManager.LoadScene(SceneConst.MATCH);
+    }
+
+    // 绑定的按钮事件
+    public void ClickLogin()
+    {
+        Events.LoginRequest.Call(userName.text, password.text); // 发送登陆请求
+    }
+
+    private void OnDestroy()
+    {
+        UnSubScribe();
+    }
+}
+
+```
 :::
 
 
