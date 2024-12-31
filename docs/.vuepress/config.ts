@@ -18,7 +18,10 @@ export default defineUserConfig({
     hostname: 'https://dyx666.icu',
     // 最后部署时间
     lastUpdated: false, 
+    contributors: true,
     plugins: {
+      // git: process.env.NODE_ENV === 'production',
+      git: true,
       /**
        * Shiki 代码高亮
        * @see https://theme-plume.vuejs.press/config/plugins/code-highlight/
