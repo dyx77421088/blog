@@ -12,7 +12,7 @@ permalink: /work/video/
 
 ## 一、资源
 ### 1. 视频存放路径
-<span class="left2" />`Video`的资源和`Sound`同级，有使用的资源需要在==SmallGame/AssetsId.txt==中增加，同样，==Pack.txt==的打包信息也要修改（`Files:Bundle/Video`)。  
+<span class="left2" />`Video`的资源和`Sound`同级，有使用的资源需要在==SmallGame/AssetsId.txt==中增加，同样，==Pack.txt==的打包信息也要修改（`Files:Bundle/Video`和`Bundle/Prefab/VideoMgr`)。  
 
 ![image](https://oss.dyx666.icu/image/work/videoUrl.png)
 ### 2. Shader
@@ -22,33 +22,49 @@ permalink: /work/video/
 ::: code-tabs
 @tab 普通使用
 ``` lua
--- video
-self.rawImage = self:GetChild("video", ClassType.RawImage)
--- 创建video，显示的位置为self.rawImage
-self.video = VideoItem.New(self.transform, self.mBaseView, self.rawImage) 
-
-self.video:PlayVideo("Video/Book", true) -- 普通的播放视频
+Globals.videoMgr:Play({
+  url = "Video/Cutscene_NGtoFG", -- 你的视频url
+})
 ```
 @tab 进阶使用
 ``` lua
-self.rawImage = self:GetChild("video", ClassType.RawImage)
--- 创建video，显示的位置为self.rawImage
-self.video = VideoItem.New(self.transform, self.mBaseView, self.rawImage) 
+-- 在init中准备视频
+function TransitionView:Initialize() 
+  -- 使用rawImage可以处理视频翻转问题
+  self.rawImage = self:GetChild("rawImage", ClassType.RawImage)
+  self.videoAsset = {
+    url = "Video/Cutscene_NGtoFG", -- 你的视频url
+    renderMode = UnityEngine.Video.VideoRenderMode.RenderTexture, 
+    isPrepare = true, -- 准备
+    rawImage = self.rawImage,
+    frameListener = {
+      [-5] = callback(self, "OnVideoComplete")
+    },
+  }
+  -- 准备视频
+  Globals.videoMgr:Play(self.videoAsset)
+end
+-- 在某个节点play视频
+function TranstionView:Play() 
+  self.videoAsset.isPrepare = false -- 准备完成
+  self.rawImage.gameObject:SetActive(true)
+  Globals.videoMgr:Play(self.videoAsset)
+end
 
-self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
-            :SetMaterial(Const.VideoMaterialType.Color, {removeColor = Color.black}) -- 剔除黑色部分
-            :AddFrameLinsterByUrl("Video/Book", 0.5, function ()
-                self.video:SetAlpha(0) -- 直接修改透明度为0
-            end, true) -- 在路径为Video/Book的视频的第n秒添加事件监听
-            :AddFrameLinsterByUrl("Video/Book", 1.5, function ()
-                self.video:DOAlpha(1, 1) -- 经过1秒后修改透明度为1
-            end, true)
+-- 视频播放完成
+function TransitionView:OnVideoComplete()	
+	Globals.videoMgr:Stop(self.videoAsset)
+  -- 接下来的操作TODD
+end
+
 ```
 :::
 
 
 ## 三、VideoItem API
-### 1、InitVideo(rawImage, width, height)
+### 1、说明
+API已被更新，具体使用查看VideoItem.lua
+<!-- ### 1、InitVideo(rawImage, width, height)
 > 参数及返回值
 
 | 参数名      | 类型       | 默认值  | 描述            |
@@ -106,9 +122,9 @@ self.video = VideoItem.New(self.transform, self.mBaseView, self.rawImage)
 self.video:PlayVideo("Video/Book", true) -- 普通的播放视频 -- [!code highlight]
 ```
 
-![image](https://oss.dyx666.icu/image/work/playVideo.png)
+![image](https://oss.dyx666.icu/image/work/playVideo.png) -->
 
-### 3、Pause()
+<!-- ### 3、Pause()
 > 参数及返回值
 
 
@@ -185,7 +201,7 @@ self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
 		  :AddFrameLinsterByUrl("Video/Book", 25, function ()-- [!code highlight]
 			MyLog("第25帧触发的监听")-- [!code highlight]
 		  end, false)-- [!code highlight]
-```
+``` -->
 
 ### 6、DOAlpha(alpha, time)
 > 参数及返回值
@@ -207,7 +223,7 @@ self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
 
 > 使用
 
-``` lua
+<!-- ``` lua
 self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
           :AddFrameLinsterByUrl("Video/Book", 1, function ()
             self.video:DOAlpha(0, 1) -- [!code highlight]
@@ -215,7 +231,7 @@ self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
           :AddFrameLinsterByUrl("Video/Book", 3, function ()
             self.video:DOAlpha(1, 1) -- [!code highlight]
           end, true)
-```
+``` -->
 
 ### 7、SetMaterial(materialType, param)
 > 参数及返回值
@@ -237,7 +253,7 @@ self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
 
 > 使用
 
-``` lua
+<!-- ``` lua
 -- video
 self.rawImage = self:GetChild("video", ClassType.RawImage)
 -- 创建video，显示的位置为self.rawImage
@@ -247,12 +263,12 @@ self.video = VideoItem.New(self.transform, self.mBaseView, self.rawImage)
 
 self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
           :SetMaterial(Const.VideoMaterialType.Color, {removeColor = Color.black}) -- 剔除黑色部分-- [!code highlight]
-```
+``` -->
 **左边是正常的视频播放，右边的是把黑色剔除了之后的视频。**
 
 <img src="https://oss.dyx666.icu/gif/videoMgr/colorRemove.gif" style="width:200px" alt="图片2"/>
 
-``` lua
+<!-- ``` lua
 -- video
 self.rawImage = self:GetChild("video", ClassType.RawImage)
 -- 创建video，显示的位置为self.rawImage
@@ -263,7 +279,8 @@ self.video:PlayVideo("Video/Book", true) -- 播放Video.Book.mp4，循环播放
 Globals.resMgr:LoadSprite("Slot/Main/SlotAtlas", "imageRemove/queko", function (sp)-- [!code highlight]
   self.video:SetMaterial(Const.VideoMaterialType.Image, {maskTex = sp.texture}) -- [!code highlight]
 end)-- [!code highlight]
-```
+``` -->
 **右边是进行剔除的图片，左边是根据图片剔除之后的效果视频。ps：剔除的部分为图片中透明的部分。**
 
 <img src="https://oss.dyx666.icu/gif/videoMgr/imageRemove.gif" style="width:200px" alt="图片2"/>
+
