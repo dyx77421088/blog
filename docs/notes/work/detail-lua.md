@@ -97,10 +97,10 @@ end
 * ==RevealFinish==♥：一局结束之后调用。一般用框架的，不需要重写。
 * ==RevealChess==♥♥♥：棋子有多种状态，包括但不限于待机(Idle)、Respin、完成(Finish)。在改变棋子的状态的时候的回调。
 
-#### 7、一些常用的一些其它方法
+### 7、一些常用的一些其它方法
 
 
-##### 1、GetChild
+#### 1、GetChild
 
 使用频率：♥♥♥♥♥♥
 
@@ -117,7 +117,7 @@ self.root = self:GetChild("normal/root")
 self.image = self:GetChild("normal/image", ClassType.Image)
 ```
 
-##### 2、callback
+#### 2、callback
 
 使用频率：♥♥♥♥
 
@@ -137,7 +137,7 @@ function RollView:Stop(idx)
 end
 ```
 
-##### 3、Mylog
+#### 3、Mylog
 
 使用频率：♥♥♥♥
 
@@ -151,7 +151,7 @@ end
 MyLog("hello world")
 ```
 
-##### 4、DelayCall
+#### 4、DelayCall
 
 使用频率：♥♥♥♥♥
 
@@ -168,7 +168,7 @@ Globals.timerMgr:DelayCall(function ()
 end, 4)
 ```
 
-##### 5、Dispatch
+#### 5、Dispatch
 
 使用频率：♥♥♥♥♥
 
@@ -183,7 +183,7 @@ end, 4)
 LMessage:Dispatch(LuaEvent.SmallGame.Reveal, Const.RevealType.Switch, Const.GameRule.Normal, Const.GameRule.Bonus)
 ```
 
-##### 6、Pop及Push
+#### 6、Pop及Push
 
 使用频率：♥♥♥
 
@@ -215,7 +215,7 @@ function RollView:OnLoadObject(args, object)
 end
 ```
 
-##### 7、DOTween
+#### 7、DOTween
 
 使用频率：♥♥♥♥♥♥
 
