@@ -96,3 +96,138 @@ end
 * ==RevealSwitch==♥♥♥♥♥♥：==RevealResult==计算的获奖结果如果有特殊奖，会跳转到免费游戏等特殊玩法中，在这里面处理转场表现。
 * ==RevealFinish==♥：一局结束之后调用。一般用框架的，不需要重写。
 * ==RevealChess==♥♥♥：棋子有多种状态，包括但不限于待机(Idle)、Respin、完成(Finish)。在改变棋子的状态的时候的回调。
+
+#### 7、一些常用的一些其它方法
+
+
+##### 1、GetChild
+
+使用频率：♥♥♥♥♥♥
+
+> 方法说明
+
+通过路径获得对应的节点，或获得节点上挂载的组件。
+
+> 使用
+
+```lua
+-- 获得normal/root路径下的节点的transform
+self.root = self:GetChild("normal/root")
+-- 获得normal/image路径下的节点上挂载的Image
+self.image = self:GetChild("normal/image", ClassType.Image)
+```
+
+##### 2、callback
+
+使用频率：♥♥♥♥
+
+> 方法说明
+
+返回一个方法，通常用于回调，可以带参数。
+
+> 使用
+
+```lua
+function RollView:Initialize()
+	self.click = ButtonItem.New(self:GetChild("click"), self)
+	self.click:AddOnClick(self.click, callback(self, "Stop", 1))
+end
+-- 回调方法
+function RollView:Stop(idx)
+end
+```
+
+##### 3、Mylog
+
+使用频率：♥♥♥♥
+
+> 方法说明
+
+以log的形式打印。
+
+> 使用
+
+```lua
+MyLog("hello world")
+```
+
+##### 4、DelayCall
+
+使用频率：♥♥♥♥♥
+
+> 方法说明
+
+延时x秒后执行方法，异步的。
+
+> 使用
+
+```lua
+-- 延时4秒后执行function
+Globals.timerMgr:DelayCall(function ()
+	self.effWinObj:SetActive(false)
+end, 4)
+```
+
+##### 5、Dispatch
+
+使用频率：♥♥♥♥♥
+
+> 方法说明
+
+数据之间的通信，以RollView和SceneView为主，其它的lua文件或者他们之间相互通信都要用到。
+
+> 使用
+
+```lua
+-- 通知注册了LuaEvent.SmallGame.Reveal的方法，后三个为参数。整体为从normal切换为bonus
+LMessage:Dispatch(LuaEvent.SmallGame.Reveal, Const.RevealType.Switch, Const.GameRule.Normal, Const.GameRule.Bonus)
+```
+
+##### 6、Pop及Push
+
+使用频率：♥♥♥
+
+> 方法说明
+
+用抽屉的形式控制资源，有就拿，不够就new，用完就放到抽屉中。
+
+> 使用
+
+![image](https://oss.dyx666.icu/image/work/lua6.png)
+
+![image](https://oss.dyx666.icu/image/work/lua7.png)
+
+获得`SlotObject`下的fly资源，加载之后在回调中调它的位置之类的参数，然后用`Push`回收，回收到场景中的`Pool`节点下。
+
+```lua
+Globals.poolMgr:Pop("Slot/Main/SlotObject", "fly", callback(self, "OnLoadObject"))
+
+function RollView:OnLoadObject(args, object)
+	if object.name == "fly" then
+		local trans = object.transform
+		trans:SetParent(self.effectRoot)
+		trans.localScale = Vector3.one * 9.6
+		-- 1秒之后回收
+		Globals.timerMgr:DelayCall(function ()
+			Globals.poolMgr:Push("fly", object)
+		end, 1)
+	end
+end
+```
+
+##### 7、DOTween
+
+使用频率：♥♥♥♥♥♥
+
+> 方法说明
+
+所有的动画控制表现啥的都要用DOTween，框架中的lua也是可以和C#中一样正常使用。更多使用需自行学习。
+
+> 使用
+
+```lua
+-- 0.5秒缩放为1.4
+self.num.transform:DOScale(Vector3.one * 1.4, 0.5)
+-- 0.6秒移动到targetPos位置
+self.transform:DOLocalMove(targetPos, 0.6):SetEase(EaseType.OutBounce)
+```
