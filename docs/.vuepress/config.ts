@@ -126,7 +126,7 @@ export default defineUserConfig({
         // // 如果是 `^` 开头，则匹配该正则表达式的页面也会加密
         // '^/(a|b)/': '123456',
 
-        'notes/work/password.md': 'dyx666',
+        'notes/work/xiaopin.md': 'dyx666',
       }
     },
   }),
